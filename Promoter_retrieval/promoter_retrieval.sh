@@ -13,3 +13,6 @@ bedtools getfasta -fi $Genome_fasta -bed $BioMart_gene_tsv.bed -s -name > $BioMa
 
 python Create_FG_BG_fasta_files.py $gene_list $BioMart_gene_tsv.bed.fa
 
+rm $BioMart_gene_tsv.bed
+
+rm $BioMart_gene_tsv.bed.fa
