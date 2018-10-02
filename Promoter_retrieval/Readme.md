@@ -1,5 +1,7 @@
 ## How To
 
+### Case 1: When you only have the foreground gene list, you want to extract FG and BG sequences, you can do the following:
+
 1. Download the gene annotation file from BioMart
 	- Gene name
 	- Chromosome name
@@ -18,3 +20,4 @@
 
 `./promoter_retrieval.sh Brugia/Brugia_sequence_name.tsv Brugia/brugia_malayi.PRJNA10729.WBPS8.genomic.fa 1000 Brugia/sample_genes.list`
 
+### Case 2: When you have gene lists for both FG and BG, the easiest way to extract promoter sequnences, is using BioMart. You can also modify my program to do that. [TODO]
