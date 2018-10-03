@@ -10,7 +10,7 @@
 | DME_GRHTGDTGA  | 11      | 27      | 85%     | 20%     | 4.136752          |
 | DME_MARKGDSRGA | 11      | 29      | 85%     | 22%     | 3.851459          |
 
-## Output all motifs with FGC > X%.
+## Output all motifs with FGC > X ( X in [0,1]).
 
 
 `python coverage_above.py HRGP_raw_both_strand.csv 1`
