@@ -65,13 +65,15 @@ L_fimo = sys.argv[3]
 label2 = sys.argv[4]
 T_fimo_pos = parse_fimo(T_fimo)
 L_fimo_pos = parse_fimo(L_fimo)
-motif_cons = {}		
+motif_cons = {}
+motif_output={}	
 dis_cut = 1
 for motif in T_fimo_pos:
 	# print motif
 	motif_cons[motif]={}
 	motif_cons[motif]["cons"] = []
 	motif_cons[motif]["amg"] = []
+	motif_output[motif]=[]
 	if not L_fimo_pos.has_key(motif):
 		# print "not in"
 		continue
@@ -105,8 +107,9 @@ for motif in T_fimo_pos:
 			# conserved motifs: motifs occur at the same position
 			if min_diff(T_adj_pos_array,L_adj_pos_array) < dis_cut:
 				motif_cons[motif]["cons"].append(label1+" "  + gene_temp +" : " + ",".join(map(lambda x:str(x),T_adj_pos_array)) + "@" + ",".join(map(lambda x:str(x),T_pos_array)) + "; "+label2+" "+ortholog1+" : " + ",".join(map(lambda x:str(x),L_adj_pos_array)))
+				motif_output[motif].append("["+gene_temp+","+ortholog1+"]")
 
-out = open(sys.argv[5],"wb")				
+out = open(sys.argv[5]+".summary","wb")				
 for motif in motif_cons:
 	if not len(motif_cons[motif]["cons"]) == 0:
 		out_line = [motif] + ["conserved"] + motif_cons[motif]["cons"]
@@ -115,3 +118,14 @@ for motif in motif_cons:
 		if not len(motif_cons[motif]["amg"]) == 0:
 			out_line = [motif] + ["ambigous"] + motif_cons[motif]["amg"]
 			print >>out,"\t".join(out_line)
+out.close()
+
+out = open(sys.argv[5]+".table.tsv","wb")				
+for motif in motif_output:
+
+	out_line = motif+"\t"+ ", ".join(motif_output[motif])
+	print >>out,out_line
+
+out.close()
+
+
